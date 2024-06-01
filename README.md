@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Head content -->
+  <!-- Include necessary meta tags, stylesheets, and scripts -->
 </head>
 <body>
 
-  <div class="cart-container">
-    <h2>Cart</h2>
-    <div id="cart">
-      <!-- Cart content will be displayed here -->
-    </div>
+  <!-- Cart contents -->
+  <div id="cart">
+    <!-- Cart items will be displayed here -->
   </div>
 
   <script>
-    // Function to update cart display
-    function updateCartDisplay() {
+    // Function to retrieve cart data from local storage and display it
+    function displayCart() {
       const cartElement = document.getElementById('cart');
       cartElement.innerHTML = '';
 
-      // Ensure that localStorage is available before accessing it
-      if (localStorage.getItem('cart')) {
-        let cart = JSON.parse(localStorage.getItem('cart'));
+      // Retrieve cart data from local storage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        cart.forEach(item => {
-          const itemElement = document.createElement('div');
-          itemElement.classList.add('cart-item');
-          itemElement.textContent = `${item.name}: £${item.price}`;
-          cartElement.appendChild(itemElement);
-        });
-      }
+      // Display cart items
+      cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.textContent = `${item.name}: £${item.price}`;
+        cartElement.appendChild(itemElement);
+      });
     }
 
     // Initialize cart display
-    updateCartDisplay();
+    displayCart();
   </script>
 </body>
 </html>
