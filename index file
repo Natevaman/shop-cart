@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <!-- You can add any additional meta tags, stylesheets, or scripts here -->
+  <!-- For example, if you have a CSS file, you can link it like this: -->
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+  <div class="cart-container">
+    <h2>Cart</h2>
+    <div id="cart">
+      <!-- Cart content will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    // Function to update cart display
+    function updateCartDisplay() {
+      const cartElement = document.getElementById('cart');
+      cartElement.innerHTML = '';
+
+      // Ensure that localStorage is available before accessing it
+      if (localStorage.getItem('cart')) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+
+        cart.forEach(item => {
+          const itemElement = document.createElement('div');
+          itemElement.classList.add('cart-item');
+          itemElement.textContent = `${item.name}: £${item.price}`;
+          cartElement.appendChild(itemElement);
+        });
+      }
+    }
+
+    // Initialize cart display
+    updateCartDisplay();
+  </script>
+</body>
+</html>
